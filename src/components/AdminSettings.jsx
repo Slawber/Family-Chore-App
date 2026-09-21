@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 function AdminSettings({ kids, onKidsUpdate, parentPassword, onParentPasswordUpdate }) {
-  const [editingKidId, setEditingKidId] = useState(null);
-  const [editingChoreId, setEditingChoreId] = useState(null);
   const [newChoreName, setNewChoreName] = useState('');
   const [newChoreReward, setNewChoreReward] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -78,7 +76,6 @@ function AdminSettings({ kids, onKidsUpdate, parentPassword, onParentPasswordUpd
     });
 
     onKidsUpdate(updatedKids);
-    setEditingChoreId(null);
     alert('Chore updated!');
   };
 

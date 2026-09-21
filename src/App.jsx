@@ -3,7 +3,6 @@ import './index.css';
 import LoginScreen from './components/LoginScreen';
 import ParentDashboard from './components/ParentDashboard';
 import KidDashboard from './components/KidDashboard';
-import DeviceTimer from './components/DeviceTimer';
 import AdminSettings from './components/AdminSettings';
 
 function App() {
