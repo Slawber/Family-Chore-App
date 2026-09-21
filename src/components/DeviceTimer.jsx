@@ -45,7 +45,7 @@ function DeviceTimer({ minutesAvailable, onTimeUpdate, kidId }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isRunning, notified5min]);
+  }, [isRunning, notified5min, secondsRemaining]);
 
   const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
