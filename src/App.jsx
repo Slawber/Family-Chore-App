@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import LoginScreen from './components/LoginScreen';
 import ParentDashboard from './components/ParentDashboard';
 import KidDashboard from './components/KidDashboard';
 import AdminSettings from './components/AdminSettings';
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [kids, setKids] = useState([
+const defaultKids = [
     {
       id: 'jaxon',
       name: 'Jaxon',
@@ -57,10 +55,31 @@ function App() {
       deviceTimeEarned: 0,
       deviceTimeUsed: 0
     }
-  ]);
-  const [parentPassword, setParentPassword] = useState('parent123');
+  ];
+
+function App() {
+  // Initialize state from localStorage or use defaults
+  const [currentUser, setCurrentUser] = useState(null);
+  const [kids, setKids] = useState(() => {
+    const saved = localStorage.getItem('kidsData');
+    return saved ? JSON.parse(saved) : defaultKids;
+  });
+  const [parentPassword, setParentPassword] = useState(() => {
+    const saved = localStorage.getItem('parentPassword');
+    return saved ? saved : 'parent123';
+  });
   const [showNotification, setShowNotification] = useState(null);
   const [showAdminSettings, setShowAdminSettings] = useState(false);
+
+  // Save kids data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('kidsData', JSON.stringify(kids));
+  }, [kids]);
+
+  // Save parent password to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('parentPassword', parentPassword);
+  }, [parentPassword]);
 
   const handleParentLogin = (password) => {
     if (password === parentPassword) {
